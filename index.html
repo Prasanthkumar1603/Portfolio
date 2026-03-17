@@ -291,34 +291,25 @@
         <p class="footer__copy">&#169; CodeByPK. All rights reserved</p>
     </footer>
     <!--===== SCROLL REVEAL =====-->
-   <script>
-
+  <script>
 const form = document.getElementById("contactForm");
 
 form.addEventListener("submit", function(e){
 e.preventDefault();
 
-const data = {
-name: form.name.value,
-email: form.email.value,
-message: form.message.value
-};
+const formData = new FormData(form);
 
-fetch("https://script.google.com/macros/s/AKfycbzLByJmx6Pqv6dzrVBkV3n_NJUrb9Zm22XVysVxzhukKMS84b5ptF82U2nNfzFJs8UjzA/exec",{
-method:"POST",
-mode:"no-cors",
-headers:{
-"Content-Type":"application/json"
-},
-body: JSON.stringify(data)
-});
-
+fetch("https://script.google.com/macros/s/AKfycbzLByJmx6Pqv6dzrVBkV3n_NJUrb9Zm22XVysVxzhukKMS84b5ptF82U2nNfzFJs8UjzA/exec", {
+method: "POST",
+body: formData
+})
+.then(response => {
 alert("Message Sent Successfully");
-
 form.reset();
+})
+.catch(error => console.error("Error!", error));
 
 });
-
 </script>
 
     <script src="https://unpkg.com/scrollreveal"></script>
